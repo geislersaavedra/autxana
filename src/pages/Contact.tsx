@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import ContactMap from '../components/ContactMap';
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simular envío de formulario
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      // Ocultar mensaje de éxito después de 3 segundos
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }, 1500);
+  };
+
   return (
     <main className="pt-24 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,7 +70,7 @@ export default function Contact() {
             className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100"
           >
             <h2 className="text-3xl font-bold text-slate-900 mb-8">Envíanos un mensaje</h2>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Nombre Completo</label>
@@ -99,9 +115,13 @@ export default function Contact() {
                   placeholder="Cuéntanos sobre tu proyecto..."
                 ></textarea>
               </div>
-              <button className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-slate-800 transition-all">
-                <span>Enviar Mensaje</span>
-                <Send size={18} />
+              <button 
+                type="submit" 
+                disabled={isSubmitting || isSubmitted}
+                className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-slate-800 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                <span>{isSubmitting ? 'Enviando...' : isSubmitted ? '¡Mensaje Enviado!' : 'Enviar Mensaje'}</span>
+                {!isSubmitting && !isSubmitted && <Send size={18} />}
               </button>
               <p className="text-xs text-slate-500 text-center">
                 Al enviar este formulario, aceptas nuestra política de privacidad y protección de datos.
