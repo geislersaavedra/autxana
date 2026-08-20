@@ -1,0 +1,5 @@
+{
+  "name": "Autxana Engineering",
+  "description": "Ingeniería estructural especializada en infraestructura de telecomunicaciones. Diseño, cálculo y análisis avanzado en España, USA y Venezuela.",
+  "requestFramePermissions": ["geolocation"]
+}
