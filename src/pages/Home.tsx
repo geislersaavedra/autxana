@@ -5,6 +5,7 @@ import Clients from '../components/Clients';
 import TowerTypes from '../components/TowerTypes';
 import FeaturedProjects from '../components/FeaturedProjects';
 import StrategicExpansion from '../components/StrategicExpansion';
+import GlobalPresence from '../components/GlobalPresence';
 import Compliance from '../components/Compliance';
 import { motion } from 'motion/react';
 
@@ -75,6 +76,7 @@ export default function Home() {
       <StrategicExpansion />
 
       <TowerTypes />
+      <GlobalPresence />
       <FeaturedProjects />
       <Compliance />
     </main>
